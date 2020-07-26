@@ -1,0 +1,7 @@
+% pip
+
+# Force reinstall existing package
+pip install --upgrade --force-reinstall <package>
+
+# Get library info
+pip show <package>

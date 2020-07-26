@@ -1,0 +1,4 @@
+% awk, string
+
+# Print last column
+awk '{print $NF}'
