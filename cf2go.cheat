@@ -1,0 +1,10 @@
+% cf2go, cf2go-cli
+
+# SSH to landscape jumpbox
+cf2go jump <landscape_id>
+
+# List landscapes configurations
+cf2go list
+
+# Show landscape details
+cf2go details <landscape_id>
