@@ -1,13 +1,10 @@
 % git
 
-# Set global git user name
-git config --global user.name <name>
+# Update submodules.
+git submodule update --init --recursive
 
-# Set global git user email
-git config --global user.email <email>
-
-# Initializes a git repository
-git init
+# Eneble help store. Init credentials once.
+git config --global credential.helper store
 
 # Clone a git repository
 git clone -b <branch_name> <repository> <clone_directory>
@@ -24,25 +21,6 @@ git remote rename <old_remote_name> <new_remote_name>
 # Remove a remote for a git repository
 git remote remove <remote_name>
 
-# Checkout to branch
-# Change branch
-git checkout <branch>
-
-# Displays the current status of a git repository
-git status
-
-# Displays the changes made to a file
-git diff <filename>
-
-# Stages a changed file for commit
-git add <filename>
-
-# Stages all changed files for commit
-git add .
-
-# Saves the changes to a file in a commit
-git commit -m <message>
-
 # Pushes committed changes to remote repository
 git push -u <remote_name> <branch_name>
 
@@ -55,23 +33,14 @@ git push <remote_name> <branch_name> -f
 # Pulls changes to a remote repo to the local repo
 git pull --ff-only
 
-# Merges changes on one branch into current branch
-git merge <branch_name>
-
 # Abort the current conflict resolution process, and try to reconstruct the pre-merge state.
 git merge --abort
-
-# Displays log of commits for a repo
-git log
 
 # Displays formatted log of commits for a repo
 git log --all --decorate --oneline --graph
 
 # Clear everything
 git clean -dxf
-
-# Sign all commits in a branch based on master
-git rebase master -S -f
 
 # See all open pull requests of a user on Github
 url::open 'https://github.com/pulls?&q=author:<user>+is:open+is:pr'

@@ -1,0 +1,4 @@
+% vault
+
+# Renaming a.k.a moving Secrets Engine.
+VAULT_ADDR=https://vault.tools.sap VAULT_NAMESPACE=<your_namespace> vault secrets move <prev_name>/ <new_name>/

@@ -9,9 +9,6 @@ docker rmi <image_id>
 # Build an image from the Dockerfile in the current directory and tag the image
 docker build -t <image>:<version> .
 
-# Pull an image from a registry
-docker pull <image>:<version>
-
 # Stop a running container through SIGTERM
 docker stop <container_id>
 

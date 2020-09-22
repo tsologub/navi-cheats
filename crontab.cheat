@@ -1,7 +1,1 @@
 % crontab, scheduling
-
-# List cron jobs
-crontab -l
-
-# Edit cron job
-crontab -e

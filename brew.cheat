@@ -1,19 +1,10 @@
 % brew, cask
 
-# update brew
-brew update
-
-# upgrade brew
-brew upgrade
-
 # get info for a package
 brew info <package>
 
 # get info for a cask
 brew cask info <casks>
-
-# install a package
-brew install <package>
 
 # install a cask
 brew cask install <casks>
