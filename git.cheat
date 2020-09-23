@@ -1,5 +1,8 @@
 % git
 
+# Checkout remote branch locally
+git checkout --track origin/<branch_name>
+
 # Update submodules.
 git submodule update --init --recursive
 
