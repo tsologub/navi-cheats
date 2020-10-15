@@ -1,5 +1,6 @@
 % lscrypt
 
-# To be continued ...
+# View unsealed file from state. E.g. 'lscrypt read -d iac file.yml'
+lscrypt read -d <deployment> <name_of_the_file_without_dot_cms> 
 
 
