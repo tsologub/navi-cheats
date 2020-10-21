@@ -7,7 +7,7 @@ pyenv versions
 pyenv install <python_version>
 
 # Set/activate Python version
-pyenv <global||local||shell> <python_version>
+pyenv <global_local_shell> <python_version>
 
 # Create virtual environment
 pyenv virtualenv <python_version> <new_venv_name>
