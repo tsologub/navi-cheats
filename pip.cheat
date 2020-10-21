@@ -5,3 +5,6 @@ pip3 install --upgrade --force-reinstall <package>
 
 # Get library info
 pip3 show <package>
+
+# List installed packages for current venv
+pip list

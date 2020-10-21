@@ -1,0 +1,19 @@
+% pyenv, pyenv-virtualenv
+
+# List installed python versions
+pyenv versions
+
+# Install new python version
+pyenv install <python_version>
+
+# Set/activate Python version
+pyenv <global||local||shell> <python_version>
+
+# Create virtual environment
+pyenv virtualenv <python_version> <new_venv_name>
+
+# Activate virtual environment
+pyenv activate <venv_name>
+
+# Exit virtual environment
+pyenv deactivate
