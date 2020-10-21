@@ -8,3 +8,12 @@ pip3 show <package>
 
 # List installed packages for current venv
 pip list
+
+# Install packages from requirements.txt
+pip install -r <path_to_requirements_txt>
+
+# Uninstall package
+pip uninstall <package_name> -y
+
+# Uninstall packages from requirements.txt
+pip uninstall -r <path_to_requirements_txt> -y
