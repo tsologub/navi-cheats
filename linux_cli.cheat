@@ -1,0 +1,25 @@
+% linux_cli, linux
+
+# Show all exported env. variables
+printenv
+
+# Jump to line start
+ctrl + A
+
+# Jump to line end
+ctrl + E
+
+# Jump one word forward
+alt + F
+
+# Jump one word backward
+alt + B
+
+# Find a file in a system
+locate
+
+# Get system info
+hostnamectl
+
+# Find string in files
+grep -rnw <path_to_look_in> -e <name_to_look_for>
