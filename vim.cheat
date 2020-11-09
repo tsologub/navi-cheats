@@ -1,0 +1,22 @@
+% vi, vim
+
+# Jump to line start
+0 
+
+# Jump to the file last line
+shift + G
+
+# Delete current line
+dd
+
+# Delete the whole file
+dG
+
+# Undo operation
+u
+
+# Copy line
+yy
+
+# Paste
+p
