@@ -1,0 +1,25 @@
+% bash
+
+# Rewrite
+>
+
+# Append
+>>
+
+# Stdin
+0
+
+# Stdout
+1
+
+#Stderr
+2
+
+# Stdout to file
+1>
+
+# Stderr to file
+2>
+
+# Stdout and stderr to file
+&>
