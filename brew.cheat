@@ -21,6 +21,9 @@ brew edit <package>
 # edit cask
 brew cask edit <casks>
 
+# upgrade/update formula
+brew upgrade <formula_name>
+
 $ package: brew search
 $ casks: brew search --casks
 $ installed: brew list
