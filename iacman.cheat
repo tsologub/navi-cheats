@@ -1,1 +1,4 @@
 % iacman, iac
+
+# Show, generate manifest. (deployments/<deployment>/gen/terraform/manifest.yml)
+iac -d <deployment> action write_manifest
