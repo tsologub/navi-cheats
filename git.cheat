@@ -124,7 +124,7 @@ git rebase main <branch_name> -i
 ##############
 
 # Adds a remote for a git repository
-git remote add <remote_name> <remote_url>
+git remote add <remote_custom_name> <remote_url>
 
 # Renames a remote for a git repository
 git remote rename <old_remote_name> <new_remote_name>
