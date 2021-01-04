@@ -1,4 +1,4 @@
 % tcpdump
 
 # Execute tcpdump
-sudo tcpdump -i <NIC_to_capture_packets_on> -w <file_write_into> -c <how_many_packets_to_capture>
+sudo tcpdump -A -i <NIC_to_capture_packets_on> -w <file_write_into> -C <file_size>
