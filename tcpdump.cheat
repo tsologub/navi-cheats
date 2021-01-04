@@ -1,4 +1,4 @@
 % tcpdump
 
 # Execute tcpdump
-sudo tcpdump -A -i <NIC_to_capture_packets_on> -w <file_write_into> -C <file_size>
+sudo tcpdump -A -s0 port <port_number> -w <file_write_into> -C 1500 -i <NIC_to_capture_packets_on>
