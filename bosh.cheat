@@ -1,0 +1,7 @@
+% bosh
+
+# List Bosh CF Cells VMs
+bosh -e bosh -d cf_cells_1 vms
+
+# Login, ssh to Bosh CF Cell VM
+bosh -e bosh -d cf_cells_1 ssh <vm_id>
