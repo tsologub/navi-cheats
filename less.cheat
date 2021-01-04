@@ -1,0 +1,10 @@
+%less
+
+# Forward one window
+SPACE
+
+# To the end of the file
+G
+
+# To the start of the file
+g
