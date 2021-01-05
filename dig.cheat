@@ -1,0 +1,4 @@
+% dig
+
+# Fire DNS lookup
+dig @<nameserver> <domain_name> <type_of_record>
