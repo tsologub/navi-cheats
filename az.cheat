@@ -1,0 +1,4 @@
+% az, azure
+
+# Check the VM availability on Azure
+az vm list-skus --location <location> --size <vm_size> --zone --subscription <sub_id>
