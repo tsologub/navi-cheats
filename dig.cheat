@@ -2,3 +2,6 @@
 
 # Fire DNS lookup
 dig @<nameserver> <domain_name> <type_of_record>
+
+# Check the TTL for specific host/domain
+dig +nocmd +noall +answer <domain_name>
