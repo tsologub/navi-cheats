@@ -1,0 +1,10 @@
+% cf, cf7, cloudfoundry
+
+# Set target, org, and space
+cf7 target -o <org_name> -s <your_space>
+
+# List/View apps
+cf7 apps
+
+# Show recent logs
+cf7 logs <app_name> --recent
