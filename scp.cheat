@@ -1,0 +1,7 @@
+% scp
+
+# Copy remote file to local
+scp <remote_user_name>@<remote_ip>:<absolute_path_to_remote_file> <local_path_to_store>
+
+# Copy local file to remote
+scp <filename> <remote_user_name>@<remote_ip>:<remote_dir>
