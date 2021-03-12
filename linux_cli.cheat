@@ -23,3 +23,6 @@ hostnamectl
 
 # Find string in files
 grep -rnw <path_to_look_in> -e <name_to_look_for>
+
+# Check disk space
+df -h

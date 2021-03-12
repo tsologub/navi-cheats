@@ -1,4 +1,28 @@
 % vault
 
+# Before executing any command, export: VAULT_ADDR, VAULT_NAMESPACE, and don't forget to login
+vault login -method=oidc
+
 # Renaming a.k.a moving Secrets Engine.
-VAULT_ADDR=https://vault.tools.sap VAULT_NAMESPACE=<your_namespace> vault secrets move <prev_name>/ <new_name>/
+vault secrets move <prev_name>/ <new_name>/
+
+# List all AppRoles
+vault list auth/approle/role
+
+# View detailed information about role
+vault read auth/approle/role/<role_name>
+
+# Generate role-id for AppRole
+vault read auth/approle/role/<role_name>/role-id
+
+# Generate secret-id for AppRole
+vault write -f auth/approle/role/<role_name>/secret-id
+
+# Login with role-id and secret-id from AppRole
+vault write auth/approle/login role_id=<role_id> secret_id=<secret_id>
+
+# Read secret
+vault kv get -field=<NAME_OF_SECRET_KEY> <secret_path>
+
+# List all authentication methods
+vault auth list -detailed
