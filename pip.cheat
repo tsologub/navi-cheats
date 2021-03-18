@@ -17,3 +17,6 @@ pip uninstall <package_name> -y
 
 # Uninstall packages from requirements.txt
 pip uninstall -r <path_to_requirements_txt> -y
+
+# Generate requirements.txt file
+pip3 freeze > requirements.txt
