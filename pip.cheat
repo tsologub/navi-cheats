@@ -20,3 +20,9 @@ pip uninstall -r <path_to_requirements_txt> -y
 
 # Generate requirements.txt file
 pip3 freeze > requirements.txt
+
+# Location for global site-packages
+python3 -m site
+
+# Location for user site-packages
+python3 -m site --user-site
