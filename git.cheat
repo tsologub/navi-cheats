@@ -165,3 +165,10 @@ git tag -a <tag_name> -m "<tagging_message>"
 
 # Create a lightweight tag
 git tag <tag_name>
+
+##############
+##OTHERS
+##############
+
+# Remove local file under tracking
+git rm --cached <file_name> -f
