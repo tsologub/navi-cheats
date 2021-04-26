@@ -38,3 +38,6 @@ docker rm $(docker ps -a -q)
 
 # Remove all old volumes
 docker volume prune
+
+# Prune everything
+docker system prune --all
