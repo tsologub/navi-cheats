@@ -9,7 +9,7 @@ vault secrets move <prev_name>/ <new_name>/
 # List all AppRoles
 vault list auth/approle/role
 
-# View detailed information about role
+# View detailed information about AppRole, role
 vault read auth/approle/role/<role_name>
 
 # Generate role-id for AppRole
