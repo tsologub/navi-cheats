@@ -63,7 +63,7 @@ git config --global help.autocorrect 1
 git clone -b <branch_name> <repository> <clone_directory>
 
 # Clone repository with all submodules
-git clone --recurse-submodules <repository>
+git clone --recurse-submodules --remote-submodules <repository>
 
 ##############
 ##LOCAL REPO
