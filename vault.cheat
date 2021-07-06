@@ -26,3 +26,6 @@ vault kv get -field=<NAME_OF_SECRET_KEY> <secret_path>
 
 # List all authentication methods
 vault auth list -detailed
+
+# Delete AppRole
+vault delete auth/approle/role/<role_name>
