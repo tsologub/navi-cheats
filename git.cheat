@@ -10,7 +10,7 @@ git branch -av
 # List/show local branches
 git branch
 
-# Delete branch
+# Delete/remove branch
 git branch -d <branch_name>
 
 ##############
