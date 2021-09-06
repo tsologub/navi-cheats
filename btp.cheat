@@ -1,0 +1,16 @@
+% btp, iac, lscrypt
+
+# Login into Credhub (make tunnel on)
+iac -d landscape-credhub action login
+
+# Get full path of Concourse credential
+credhub find -n admin_concourse
+
+# Get password for admin_concourse
+credhub get -n <full_path_to_credential>
+
+# Show, generate manifest. (deployments/<deployment>/gen/terraform/manifest.yml)
+iac -d <deployment> action write_manifest
+
+# View unsealed file from state. E.g. 'lscrypt read -d iac file.yml'
+lscrypt read -d <deployment> <name_of_the_file_without_dot_cms> 
