@@ -55,6 +55,12 @@ git config --global core.excludesfile <path_to_gitignore_from_home>
 # Enable autocorrect for misstyped commands
 git config --global help.autocorrect 1
 
+# Set global/local username
+git config --<global_or_local> user.name "<your_username>"
+
+# Set global/local email address
+git config --<global_or_local> user.email "<your_email>"
+
 ##############
 ##CLONE
 ##############
