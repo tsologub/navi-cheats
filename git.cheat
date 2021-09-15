@@ -115,6 +115,9 @@ git push <remote_name> <branch_name> -f
 # Push all tags to remote
 git push origin --tags
 
+# Push via token
+git push https://<the_token>@github.com/tsologub/<repo_name>.git
+
 ##############
 ##REBASE
 ##############
