@@ -61,6 +61,9 @@ git config --<global_or_local> user.name "<your_username>"
 # Set global/local email address
 git config --<global_or_local> user.email "<your_email>"
 
+# Sign all commits using GPG verified
+git config --global commit.gpgsign true
+
 ##############
 ##CLONE
 ##############
