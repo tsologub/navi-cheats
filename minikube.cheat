@@ -1,0 +1,4 @@
+% minikube
+
+# Start minikube
+minikube start --vm-driver=virtualbox
