@@ -1,7 +1,22 @@
 % minikube
 
 # Start minikube
-minikube start --vm-driver=virtualbox
+minikube start --vm-driver=virtualbox --kubernetes-version="<optional_eg_v1_14_0>"
 
 # Check status
 minikube status
+
+# Show dashboard
+minikube dashboard
+
+# Output/show environment variables
+minikube docker-env
+
+# Stop minikube
+minikube stop
+
+# Connect Docker client with Docker server running in Minikube VM
+eval $(minikube docker-env)
+
+# Delete/destroy minikube cluster
+minikube delete
