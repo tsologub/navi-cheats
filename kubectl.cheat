@@ -1,0 +1,80 @@
+% kubectl, kubernetes, k8s
+
+#alias k="kubectl"
+
+##############
+##General
+##############
+
+# List/get all nodes
+k get nodes -o wide
+
+# Watch nodes continuously
+k get nodes -w
+
+# List/get all namespaces
+k get all --all-namespaces
+
+# List/get all resources
+k get all -o wide
+
+# Get version information
+k version --output=yaml
+
+# Get/list deployed resources based on specification
+k get -f <spec.yml> -o wide
+
+# List/get all ReplicaSets
+k get rs -o wide
+
+##############
+##Pod & Containers
+##############
+
+# List all pods
+k get pods -o wide
+
+# List/get all information about pods
+k get pods -o yaml
+
+# Describe. Get all information about pod
+k describe pod <name>
+
+# Describe service
+k describe svc <name>
+
+##############
+##Interacting with Pods
+##############
+
+# Launch a pod
+k run <name> --image=<image_name>
+
+# Create resources / pod described in .yml
+k create -f <file.yml>
+
+##############
+##Debugging
+##############
+
+# Execute command. Optionally selecting container
+k exec <pod_name> --container <cont_name> -- <command>
+
+# Go inside pod. Go inside container
+k exec -it <pod_name> --container <cont_name> -- sh
+
+# Get logs from the pod. Optionally container
+k logs --follow <pod_name> --container <container_name>
+
+# List / get / retrieve containers names within a pod
+k get -f <pod_specification.yml> -o jsonpath='{.spec.containers[*].name}'
+
+##############
+##Stopping K8s
+##############
+
+# Delete/remove any resources
+k delete -f <spec.yml>
+
+# Delete service
+k delete svc <name>
