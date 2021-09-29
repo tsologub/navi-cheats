@@ -20,3 +20,9 @@ eval $(minikube docker-env)
 
 # Delete/destroy minikube cluster
 minikube delete
+
+# Show addons list
+minikube addons list
+
+# Enable addon
+minikube addons enable <name>
