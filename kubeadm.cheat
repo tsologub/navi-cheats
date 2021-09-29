@@ -1,0 +1,7 @@
+% kubeadm, kubernetes, k8s
+
+# Init cluster
+kubeadm init
+
+# Generate token for joining worker nodes
+kubeadm token create --print-join-command
