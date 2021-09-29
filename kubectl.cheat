@@ -3,7 +3,51 @@
 #alias k="kubectl"
 
 ##############
-##General
+##Apply
+##############
+
+# Apply
+k apply -f <spec.yml> --record
+
+##############
+##Create
+##############
+
+# Create resources / pod described in .yml
+k create -f <file.yml>
+
+##############
+##Delete
+##############
+
+# Delete/remove any resources
+k delete -f <spec.yml>
+
+# Delete service
+k delete svc <name>
+
+##############
+##Describe
+##############
+
+# Describe. Get all information about pod
+k describe pod <name>
+
+# Describe service
+k describe svc <name>
+
+##############
+##Exec
+##############
+
+# Execute command. Optionally selecting container
+k exec <pod_name> --container <cont_name> -- <command>
+
+# Go inside pod. Go inside container
+k exec -it <pod_name> --container <cont_name> -- sh
+
+##############
+##Get
 ##############
 
 # List/get all nodes
@@ -16,65 +60,75 @@ k get nodes -w
 k get all --all-namespaces
 
 # List/get all resources
-k get all -o wide
-
-# Get version information
-k version --output=yaml
+k get all -o wide --show-labels
 
 # Get/list deployed resources based on specification
-k get -f <spec.yml> -o wide
+k get -f <spec.yml> -o wide --show-labels
 
 # List/get all ReplicaSets
-k get rs -o wide
+k get rs -o wide --show-labels
 
-##############
-##Pod & Containers
-##############
+# List/get service
+k get svc -o wide --show-labels
+
+# List/get ingress
+k get ing
+
+# List/get deployments
+k get deployments -o wide --show-labels
 
 # List all pods
-k get pods -o wide
+k get pods -n <namespace_name> -o wide --show-labels
 
 # List/get all information about pods
 k get pods -o yaml
 
-# Describe. Get all information about pod
-k describe pod <name>
+# List/get pods behind the service
+k get ep <service_name> -o yaml --show-labels
 
-# Describe service
-k describe svc <name>
+# List / get / retrieve containers names within a pod
+k get -f <pod_specification.yml> -o jsonpath='{.spec.containers[*].name}'
+
+# List namespaces
+k get ns
 
 ##############
-##Interacting with Pods
+##Logs
+##############
+
+# Get logs from the pod. Optionally container
+k logs --follow <pod_name> --container <container_name>
+
+##############
+##Rollout
+##############
+
+# Roll back to previous release
+k rollout undo -f <spec.yml>
+
+# Get roll out history
+k rollout history -f <spec.yml>
+
+# Check roll out status
+k rollout status -f <spec.yml>
+
+##############
+##Run
 ##############
 
 # Launch a pod
 k run <name> --image=<image_name>
 
-# Create resources / pod described in .yml
-k create -f <file.yml>
-
 ##############
-##Debugging
+##Scale
 ##############
 
-# Execute command. Optionally selecting container
-k exec <pod_name> --container <cont_name> -- <command>
-
-# Go inside pod. Go inside container
-k exec -it <pod_name> --container <cont_name> -- sh
-
-# Get logs from the pod. Optionally container
-k logs --follow <pod_name> --container <container_name>
-
-# List / get / retrieve containers names within a pod
-k get -f <pod_specification.yml> -o jsonpath='{.spec.containers[*].name}'
+# Scale deployment
+k scale deployment <name> --replicas <how_many> --record
 
 ##############
-##Stopping K8s
+##Version
 ##############
 
-# Delete/remove any resources
-k delete -f <spec.yml>
-
-# Delete service
-k delete svc <name>
+# Get version information
+k version --output=yaml
