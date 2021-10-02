@@ -1,4 +1,4 @@
-% kubectl, kubernetes, k8s
+% kubectl, kubernetes, k, k8s
 
 #alias k="kubectl"
 
@@ -10,11 +10,30 @@
 k apply -f <spec.yml> --record
 
 ##############
+##Certificate
+##############
+
+# Approve a certificate signing request. CSR.
+k certificate approve <csr_name>
+
+##############
 ##Create
 ##############
 
 # Create resources / pod described in .yml
 k create -f <file.yml>
+
+# Create a new ClusterIP service
+k create service clusterip <svc_name> --tcp=<port>:<targetPort>
+
+# Create a blueprint template for service
+k create service <svc_type> <svc_name> --tcp=<port>:<targetPort> --dry-run=client -o yaml > <file_name>.yaml
+
+# Create a blueprint template for deployment
+k create deployment <d_name> --image=<name>:<version_optional> --port=<port> --replicas=<how_many> --dry-run=client -o yaml > <file_name>.yaml
+
+# Create a blueprint template for ingress
+k create ingress <name> --rule=host/path=service:port --dry-run=client -o yaml > <file_name>.yaml
 
 ##############
 ##Delete
@@ -25,6 +44,9 @@ k delete -f <spec.yml>
 
 # Delete service
 k delete svc <name>
+
+# Delete pod
+k delete pod <name>
 
 ##############
 ##Describe
@@ -44,7 +66,7 @@ k describe svc <name>
 k exec <pod_name> --container <cont_name> -- <command>
 
 # Go inside pod. Go inside container
-k exec -it <pod_name> --container <cont_name> -- sh
+k exec -it <pod_name> --container <cont_name> -- bash
 
 ##############
 ##Get
@@ -92,12 +114,27 @@ k get -f <pod_specification.yml> -o jsonpath='{.spec.containers[*].name}'
 # List namespaces
 k get ns
 
+# List / get endpoints
+k get ep --show-labels
+
+# List / get / retrieve the whole config file
+k get <k8s_component> <name> -o yaml
+
+# Filter by label
+k get <k8s_component> -l <key_eq_value>
+
+# List certificate signing requests. CSR.
+k get csr
+
 ##############
 ##Logs
 ##############
 
 # Get logs from the pod. Optionally container
 k logs --follow <pod_name> --container <container_name>
+
+# Get logs from pod replicas by label
+k logs -l <key_eq_value>
 
 ##############
 ##Rollout
@@ -118,6 +155,9 @@ k rollout status -f <spec.yml>
 
 # Launch a pod
 k run <name> --image=<image_name>
+
+# Create a blueprint template for pod
+k run <name> --image=<name>:<version_optional> --labels="key=value, key=value" --dry-run=client -o yaml > <file_name>.yml
 
 ##############
 ##Scale
