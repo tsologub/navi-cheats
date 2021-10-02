@@ -1,0 +1,7 @@
+% openssl
+
+# Generate RSA private key
+openssl genrsa -out <file_name>.key 2048
+
+# Generate certificate service request
+openssl req -new -key <existing_priv_key_file>.key -subj "/CN=<user_name>" -out <new_csr_file_name>.csr
