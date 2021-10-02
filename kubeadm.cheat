@@ -5,3 +5,6 @@ kubeadm init
 
 # Generate token for joining worker nodes
 kubeadm token create --print-join-command
+
+# List / print defaults for cluster initialization
+kubeadm config print init-defaults
