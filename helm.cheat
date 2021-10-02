@@ -1,0 +1,13 @@
+% helm
+
+# Add helm repository
+helm repo add <name> <url>
+
+# Update helm repository
+helm repo update
+
+# Install helm chart
+helm install <give_it_some_name> <chart_name>
+
+# List / get all deployed charts
+helm ls
