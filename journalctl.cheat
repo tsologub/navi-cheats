@@ -1,0 +1,4 @@
+% journal, journalctl
+
+# Check logs of the process
+journalctl -u <process_name>
