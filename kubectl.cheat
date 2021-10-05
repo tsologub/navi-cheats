@@ -10,6 +10,16 @@
 k apply -f <spec.yml> --record
 
 ##############
+##Auth
+##############
+
+# Check what human user authorized to do
+k auth auth can-i <subcommand> <resource> --as <optional_username>
+
+# Check what service user authorized to do
+k auth can-i <subcommand> <resource> --as system:serviceaccount:<namespace>:<service_user_name> -n <target_namespace>
+
+##############
 ##Certificate
 ##############
 
@@ -35,6 +45,21 @@ k create deployment <d_name> --image=<name>:<version_optional> --port=<port> --r
 # Create a blueprint template for ingress
 k create ingress <name> --rule=host/path=service:port --dry-run=client -o yaml > <file_name>.yaml
 
+# Create a blueprint template for ClusterRole
+k create clusterrole <name> --verb=get,list,create,update,delete --resource=<resource_that_the_rule_applies_to> --dry-run=client -o yaml > <file_name>.yml
+
+# Create a blueprint template for ClusterRoleBinding
+k create clusterrolebinding <name> --clusterrole=<existing_clusterrole_name> --user=<name> --dry-run=client -o yaml > <file_name>.yml
+
+# Create a blueprint template for ServiceAccount
+k create serviceaccount <name> --dry-run=client -o yaml > <file_name>.yml
+
+# Create a blueprint template for Role
+k create role <name> --verb=get,list,create,update,delete --resource=<resource_that_the_rule_applies_to> --dry-run=client -o yaml > <file_name>.yml
+
+# Create namespace
+k create namespace <name>
+
 ##############
 ##Delete
 ##############
@@ -58,6 +83,15 @@ k describe pod <name>
 # Describe service
 k describe svc <name>
 
+# Describe cluster role
+k describe clusterrole <name>
+
+# Describe cluster role binding
+k describe clusterrolebinding <name>
+
+# Describe service account
+k describe serviceaccount <name>
+
 ##############
 ##Exec
 ##############
@@ -72,59 +106,87 @@ k exec -it <pod_name> --container <cont_name> -- bash
 ##Get
 ##############
 
-# List/get all nodes
+# Get all nodes
 k get nodes -o wide
 
 # Watch nodes continuously
 k get nodes -w
 
-# List/get all namespaces
+# Get all namespaces
 k get all --all-namespaces
 
-# List/get all resources
+# Get all resources
 k get all -o wide --show-labels
 
-# Get/list deployed resources based on specification
+# Get deployed resources based on specification
 k get -f <spec.yml> -o wide --show-labels
 
-# List/get all ReplicaSets
+# Get all ReplicaSets
 k get rs -o wide --show-labels
 
-# List/get service
+# Get services
 k get svc -o wide --show-labels
 
-# List/get ingress
+# Get ingress
 k get ing
 
-# List/get deployments
+# Get deployments
 k get deployments -o wide --show-labels
 
-# List all pods
+# Get all pods
 k get pods -n <namespace_name> -o wide --show-labels
 
-# List/get all information about pods
+# Get all information about pods
 k get pods -o yaml
 
-# List/get pods behind the service
+# Get pods behind the service
 k get ep <service_name> -o yaml --show-labels
 
-# List / get / retrieve containers names within a pod
-k get -f <pod_specification.yml> -o jsonpath='{.spec.containers[*].name}'
+# Get pods IPs behind the service
+k get ep
 
-# List namespaces
+# Get namespaces
 k get ns
 
-# List / get endpoints
+# Get endpoints
 k get ep --show-labels
 
-# List / get / retrieve the whole config file
+# Get the whole config file
 k get <k8s_component> <name> -o yaml
 
 # Filter by label
 k get <k8s_component> -l <key_eq_value>
 
-# List certificate signing requests. CSR.
+# Get certificate signing requests. CSR.
 k get csr
+
+# Get cluster roles
+k get clusterrole
+
+# Get cluter role binding
+k get clusterrolebinding
+
+# Get secrets
+k get secret
+
+# Get secret token
+k get secret <name> -o yaml
+
+# Get persistence volume
+k get pv
+
+# Get persistence volume claim
+k get pvc
+
+##############
+##Custom Columns
+##############
+
+# Get containers names within a pod
+k get pod <name> -o custom-columns=CONTAINER_NAME:.spec.containers[*].name
+
+# Get pod names, IPs, and startTime with jsonpath
+k get pod -o custom-columns=POD_NAME:.metadata.name,POD_IP:.status.podIP,CREATED_AT:.status.startTime
 
 ##############
 ##Logs
@@ -149,6 +211,9 @@ k rollout history -f <spec.yml>
 # Check roll out status
 k rollout status -f <spec.yml>
 
+# Restart deployment or stateful set
+k rollout restart deployment/<name>
+
 ##############
 ##Run
 ##############
@@ -165,6 +230,34 @@ k run <name> --image=<name>:<version_optional> --labels="key=value, key=value" -
 
 # Scale deployment
 k scale deployment <name> --replicas <how_many> --record
+
+##############
+##Troubleshooting
+##############
+
+# Is Pod running
+k get pod <name>
+
+# Is Service forwarding the requests. Is Pod registered with service
+k describe svc <service_name>
+
+# Is Service accessible
+nc <service_ip> <port>
+
+# Check Application Logs
+k logs <pod_name>
+
+# Check Pod Status and recent events
+k describe pod <name>
+
+# Show metrics for nodes
+k top node
+
+# Show metrics for pods
+k top pod
+
+# Get Pods with no explicit resources definitions
+k get pod -o jsonpath="{range .items[*]}{.metadata.name}{.spec.containers[*].resources}{'\n'}"
 
 ##############
 ##Version
