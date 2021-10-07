@@ -189,6 +189,14 @@ k get pod <name> -o custom-columns=CONTAINER_NAME:.spec.containers[*].name
 k get pod -o custom-columns=POD_NAME:.metadata.name,POD_IP:.status.podIP,CREATED_AT:.status.startTime
 
 ##############
+##Label
+##############
+
+# Label a node
+k label node <name> <label_key>=<label_value> --record=true
+
+
+##############
 ##Logs
 ##############
 
