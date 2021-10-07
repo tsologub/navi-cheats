@@ -1,0 +1,8 @@
+% etcdctl, etcd, k8s, k
+
+
+# Save the current state of the cluster
+ETCDCTL_API=<version> etcdctl snapshot save <new_dest_file>.db --cacert <location>/ca.crt --cert <location>/server.crt --key <location>/server.key
+
+# Check snapshot status
+ETCDCTL_API=<version> etcdctl snapshot status <file>.db --write-out=table 
