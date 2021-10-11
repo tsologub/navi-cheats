@@ -61,6 +61,13 @@ k create role <name> --verb=get,list,create,update,delete --resource=<resource_t
 k create namespace <name>
 
 ##############
+##Config
+##############
+
+# View Kubectl config file
+k config view
+
+##############
 ##Delete
 ##############
 
