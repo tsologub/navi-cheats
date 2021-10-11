@@ -6,3 +6,11 @@ ETCDCTL_API=<version> etcdctl snapshot save <new_dest_file>.db --cacert <locatio
 
 # Check snapshot status
 ETCDCTL_API=<version> etcdctl snapshot status <file>.db --write-out=table 
+
+##############
+##Restoring etcd
+##############
+#1. Create a restore point
+ETCDCTL_API=<version> etcdctl snapshot restore <backup_file>.db --data-dir <where_to_restore>
+
+#2. Tell etcd to use new directory. Adapt 'etcd-data' volume path in /etc/kubernetes/manifests/etcd.yaml
