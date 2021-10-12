@@ -8,3 +8,9 @@ kubeadm token create --print-join-command
 
 # List / print defaults for cluster initialization
 kubeadm config print init-defaults
+
+# Check certificate expiration for Kubernetes cluster
+kubeadm certs check-expiration
+
+# Renew certificate
+kubeadm renew <admin.conf|all|apiserver|apiserver-etcd-client|apiserver-kubelet-client|controller-manager.conf|etcd-healthcheck-client|etcd-peer|etcd-server|front-proxy-client|scheduler.conf>
