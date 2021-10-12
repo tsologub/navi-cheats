@@ -67,6 +67,9 @@ k create namespace <name>
 # View Kubectl config file
 k config view
 
+# Switch default namespace
+k config set-context --curent --namespace=<some_namespace>
+
 ##############
 ##Delete
 ##############
@@ -185,6 +188,9 @@ k get pv
 # Get persistence volume claim
 k get pvc
 
+# Get networkpolicy
+k get networkpolicy -n <namespace>
+
 ##############
 ##Custom Columns
 ##############
@@ -273,6 +279,9 @@ k top pod
 
 # Get Pods with no explicit resources definitions
 k get pod -o jsonpath="{range .items[*]}{.metadata.name}{.spec.containers[*].resources}{'\n'}"
+
+# Check open ports
+k exec <source_pod> -- sh -c 'nc -v <destination_pod_ip> <port>' 
 
 ##############
 ##Version
