@@ -16,7 +16,7 @@ vault read auth/approle/role/<role_name>
 vault read auth/approle/role/<role_name>/role-id
 
 # Generate secret-id for AppRole
-vault write -f auth/approle/role/<role_name>/secret-id
+vault write -force auth/approle/role/<role_name>/secret-id
 
 # Login with role-id and secret-id from AppRole
 vault write auth/approle/login role_id=<role_id> secret_id=<secret_id>
