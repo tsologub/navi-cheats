@@ -29,3 +29,9 @@ vault auth list -detailed
 
 # Delete AppRole
 vault delete auth/approle/role/<role_name>
+
+# Lookup special paths for a Secret Engine
+vault path-help <secret_engine>
+
+# Create AppRole
+vault write auth/approle/role/<name> secret_id_ttl=10m token_ttl=20m token_max_ttl=30m secret_id_num_uses=1 token_policy=<policy_name_to_attach>
