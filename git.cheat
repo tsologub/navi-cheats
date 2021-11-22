@@ -178,6 +178,9 @@ git tag -a <tag_name> -m "<tagging_message>"
 # Create a lightweight tag
 git tag <tag_name>
 
+# Push a single tag
+git push origin <tag_name>
+
 ##############
 ##OTHERS
 ##############
