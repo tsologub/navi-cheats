@@ -36,27 +36,6 @@ k create -f <file.yml>
 # Create a new ClusterIP service
 k create service clusterip <svc_name> --tcp=<port>:<targetPort>
 
-# Create a blueprint template for service
-k create service <svc_type> <svc_name> --tcp=<port>:<targetPort> --dry-run=client -o yaml > <file_name>.yaml
-
-# Create a blueprint template for deployment
-k create deployment <d_name> --image=<name>:<version_optional> --port=<port> --replicas=<how_many> --dry-run=client -o yaml > <file_name>.yaml
-
-# Create a blueprint template for ingress
-k create ingress <name> --rule=host/path=service:port --dry-run=client -o yaml > <file_name>.yaml
-
-# Create a blueprint template for ClusterRole
-k create clusterrole <name> --verb=get,list,create,update,delete --resource=<resource_that_the_rule_applies_to> --dry-run=client -o yaml > <file_name>.yml
-
-# Create a blueprint template for ClusterRoleBinding
-k create clusterrolebinding <name> --clusterrole=<existing_clusterrole_name> --user=<name> --dry-run=client -o yaml > <file_name>.yml
-
-# Create a blueprint template for ServiceAccount
-k create serviceaccount <name> --dry-run=client -o yaml > <file_name>.yml
-
-# Create a blueprint template for Role
-k create role <name> --verb=get,list,create,update,delete --resource=<resource_that_the_rule_applies_to> --dry-run=client -o yaml > <file_name>.yml
-
 # Create namespace
 k create namespace <name>
 
@@ -103,6 +82,35 @@ k describe clusterrolebinding <name>
 k describe serviceaccount <name>
 
 ##############
+##Dry-Runs
+##############
+
+# Dry-run for service.
+k create service <svc_type> <svc_name> --tcp=<port>:<targetPort> --dry-run=client -o yaml > svc_dry_run.yaml
+
+# Dry-run for deployment.
+k create deployment <d_name> --image=<name>:<version_optional> --port=<port> --replicas=<how_many> --dry-run=client -o yaml > dpl_dry_run.yaml
+
+# Dry-run ingress.
+k create ingress <name> --rule=host/path=service:port --dry-run=client -o yaml > ingress_dry_run.yaml
+
+# Dry-run cluster role.
+k create clusterrole <name> --verb=get,list,create,update,delete --resource=<resource_that_the_rule_applies_to> --dry-run=client -o yaml > clusterrole_dry_run.yml
+
+# Dry-run ClusterRoleBinding
+k create clusterrolebinding <name> --clusterrole=<existing_clusterrole_name> --user=<name> --dry-run=client -o yaml > crb_dry_run.yml
+
+# Dry-run ServiceAccount
+k create serviceaccount <name> --dry-run=client -o yaml > sa_dry_run.yml
+
+# Dry-run Role
+k create role <name> --verb=get,list,create,update,delete --resource=<resource_that_the_rule_applies_to> --dry-run=client -o yaml > role_dry_run.yml
+
+# Dry-run pod
+k run <name> --image=<name>:<version_optional> --labels="key=value, key=value" --dry-run=client -o yaml > pod_dry_run.yml
+
+
+##############
 ##Exec
 ##############
 
@@ -111,6 +119,9 @@ k exec <pod_name> --container <cont_name> -- <command>
 
 # Go inside pod. Go inside container
 k exec -it <pod_name> --container <cont_name> -- bash
+
+# Get keyset stored in etcd
+k exec etcd-master -n kube-system etcdctl get / --prefix -keys-only
 
 ##############
 ##Get
@@ -191,6 +202,9 @@ k get pvc
 # Get networkpolicy
 k get networkpolicy -n <namespace>
 
+# Filter k8s resources by label
+k get <k8s_resource> --selector <label_key>=<label_val>
+
 ##############
 ##Custom Columns
 ##############
@@ -207,7 +221,6 @@ k get pod -o custom-columns=POD_NAME:.metadata.name,POD_IP:.status.podIP,CREATED
 
 # Label a node
 k label node <name> <label_key>=<label_value> --record=true
-
 
 ##############
 ##Logs
@@ -242,15 +255,22 @@ k rollout restart deployment/<name>
 # Launch a pod
 k run <name> --image=<image_name>
 
-# Create a blueprint template for pod
-k run <name> --image=<name>:<version_optional> --labels="key=value, key=value" --dry-run=client -o yaml > <file_name>.yml
-
 ##############
 ##Scale
 ##############
 
 # Scale deployment
 k scale deployment <name> --replicas <how_many> --record
+
+##############
+##Taint
+##############
+
+# Taint a node. (taint-effect -> what happen to POD that DO NOT TOLERATE this taint)
+k taint nodes <node_name> <key>=<value>:<taint_effect>
+
+# Remove a taint from a node
+k taint nodes <node_name> <key>=<value>:<taint_effect>-
 
 ##############
 ##Troubleshooting
@@ -282,6 +302,9 @@ k get pod -o jsonpath="{range .items[*]}{.metadata.name}{.spec.containers[*].res
 
 # Check open ports
 k exec <source_pod> -- sh -c 'nc -v <destination_pod_ip> <port>' 
+
+# Debug with busybox pod
+k run debug-pod --image=busybox
 
 ##############
 ##Version
