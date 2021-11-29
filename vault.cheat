@@ -16,7 +16,7 @@ vault read auth/approle/role/<role_name>
 vault read auth/approle/role/<role_name>/role-id
 
 # Generate secret-id for AppRole
-vault write -f auth/approle/role/<role_name>/secret-id
+vault write -force auth/approle/role/<role_name>/secret-id
 
 # Login with role-id and secret-id from AppRole
 vault write auth/approle/login role_id=<role_id> secret_id=<secret_id>
@@ -29,3 +29,9 @@ vault auth list -detailed
 
 # Delete AppRole
 vault delete auth/approle/role/<role_name>
+
+# Lookup special paths for a Secret Engine
+vault path-help <secret_engine>
+
+# Create AppRole
+vault write auth/approle/role/<name> secret_id_ttl=10m token_ttl=20m token_max_ttl=30m secret_id_num_uses=1 token_policies=<policy_name_to_attach>
