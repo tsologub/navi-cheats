@@ -14,3 +14,9 @@ kubeadm certs check-expiration
 
 # Renew certificate
 kubeadm renew <admin.conf|all|apiserver|apiserver-etcd-client|apiserver-kubelet-client|controller-manager.conf|etcd-healthcheck-client|etcd-peer|etcd-server|front-proxy-client|scheduler.conf>
+
+# Check the upgrade plan
+kubeadm upgrade plan
+
+# Apply an upgrade
+kubeadm upgrade apply <version>

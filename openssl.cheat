@@ -1,10 +1,13 @@
 % openssl
 
 # Generate RSA private key
-openssl genrsa -out <file_name>.key 2048
+openssl genrsa -out <name>.key 2048
 
 # Generate certificate service request
-openssl req -new -key <existing_priv_key_file>.key -subj "/CN=<user_name>" -out <new_csr_file_name>.csr
+openssl req -new -key <name>.key -subj "/CN=<NAME>" -out <name>.csr
 
-# Check certificate expiration date
+# Check certificate details
 openssl x509 -in <cert_file> -text -noout
+
+# Sign certificate
+openssl x509 -req -in <name>.csr -signkey ca.key -out ca.crt

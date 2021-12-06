@@ -18,7 +18,8 @@ gzip <path>
 # Decompress compressed file
 gzip -d <gz_file>
 
-$ path: ls
-$ tar_file: ls *.tar
-$ targz_file: ls *.tar.gz
-$ gz_file: ls *.gz
+# Encode a string
+echo -n '<value>' | base64
+
+# Decode a string
+echo -n '<value>' | base64 --decode && echo

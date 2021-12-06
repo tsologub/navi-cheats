@@ -233,17 +233,30 @@ k logs --follow <pod_name> --container <container_name>
 k logs -l <key_eq_value>
 
 ##############
+##Maintenance
+##############
+
+# Drain node in preparation for maintenance
+k drain <node_name>
+
+# Mark node as schedulable
+k uncordon <node_name>
+
+# Mark node as unschedulable (won't drain pods)
+k cordon <node_name>
+
+##############
 ##Rollout
 ##############
 
-# Roll back to previous release
-k rollout undo -f <spec.yml>
+# Roll back deployment to previous release
+k rollout undo deployment/<name>
 
-# Get roll out history
-k rollout history -f <spec.yml>
+# Get deployment roll out history
+k rollout history deployments/<name>
 
-# Check roll out status
-k rollout status -f <spec.yml>
+# Check deployment roll out status
+k rollout status deployments<name>
 
 # Restart deployment or stateful set
 k rollout restart deployment/<name>
@@ -275,9 +288,6 @@ k taint nodes <node_name> <key>=<value>:<taint_effect>-
 ##############
 ##Troubleshooting
 ##############
-
-# Is Pod running
-k get pod <name>
 
 # Is Service forwarding the requests. Is Pod registered with service
 k describe svc <service_name>
