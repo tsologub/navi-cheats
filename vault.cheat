@@ -25,7 +25,7 @@ vault write auth/approle/login role_id=<role_id> secret_id=<secret_id>
 vault kv get <secret_engine_name>/<secret_path>
 
 # List all authentication methods
-vault auth list -detailed
+vault auth list -detailed -namespace=<name>
 
 # Delete AppRole
 vault delete auth/approle/role/<role_name>
@@ -59,3 +59,12 @@ vault policy list
 
 # Read policy
 vault policy read <name>
+
+# Create token
+vault token create -policy=<name> -namespace=<full/name>
+
+# Create DEV server with root token as 'root'
+vault server -dev -dev-root-token-id=root
+
+# Delete policy
+vault policy delete <name>
