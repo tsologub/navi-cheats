@@ -27,6 +27,9 @@ docker exec -it <container_id> bash
 # Print the last lines of a container’s logs
 docker logs --tail 100 <container_id> | less
 
+# Watch follow container logs
+docker logs --follow <container_id>
+
 $ image_id: docker images --- --headers 1 --column 3
 $ container_id: docker ps --- --headers 1 --column 1
 
